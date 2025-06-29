@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukesh Kumar | Data Scientist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+            --gray: #95a5a6;
+            --dark-blue-gradient: linear-gradient(135deg, #2c3e50, #3498db);
+            --light-bg: #f9f9f9;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--dark-blue-gradient);
+            color: white;
+            padding: 60px 0 80px;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        h1 {
+            font-size: 2.8rem; /* Slightly larger */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem; /* Slightly larger */
+            opacity: 0.95; /* More visible */
+            margin-bottom: 25px; /* More space */
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Increased gap */
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.8rem; /* Larger icons */
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.1); /* More pronounced hover */
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 80px 0; /* Increased padding for more breathing room */
+            position: relative;
+            z-index: 1; /* Ensure content is above any background elements */
+        }
+        
+        section:nth-of-type(even) {
+            background-color: #f0f4f8; /* Light gray background for alternating sections */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px; /* Increased margin */
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem; /* Larger section titles */
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 15px; /* More padding */
+            font-weight: 700;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px; /* Wider line */
+            height: 4px; /* Thicker line */
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: var(--card-shadow);
+            padding: 40px; /* More padding */
+            margin-bottom: 40px; /* More space between cards */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--primary); /* Added a subtle border to the left */
+        }
+        
+        .card:hover {
+            transform: translateY(-12px); /* More pronounced lift */
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem; /* Larger heading */
+            border-bottom: 1px solid var(--light); /* Subtle separator */
+            padding-bottom: 10px;
+        }
+        
+        .card h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.4rem; /* Larger subheading */
+        }
+        
+        .card .date {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 20px; /* More space */
+            display: block;
+            font-size: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; /* Slightly smaller gap for more tags */
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 10px 20px; /* More padding */
+            border-radius: 25px; /* More rounded */
+            font-size: 1rem; /* Slightly larger font */
+            transition: all 0.3s ease;
+            font-weight: 500;
+            cursor: default;
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-item {
+            margin-bottom: 25px; /* More space */
+            padding-left: 25px; /* More padding */
+            border-left: 4px solid var(--primary); /* Thicker border */
+            position: relative;
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .project-item h4 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px; /* Closer to description */
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+        
+        .project-item h4 i {
+            margin-right: 12px; /* More space */
+            font-size: 1.6rem; /* Larger icon */
+            color: var(--primary);
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .project-item p {
+            font-size: 1.05rem;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 50px 0; /* More padding */
+            margin-top: 80px; /* More space from last section */
+            position: relative;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        footer h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; /* Increased gap */
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* More space */
+            color: var(--light);
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.8rem; /* Larger icon */
+            color: var(--primary);
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Portfolio Section Styles */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .portfolio-item-content {
+            padding: 25px;
+        }
+
+        .portfolio-item-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            border-bottom: none; /* Remove border from card h3 */
+            padding-bottom: 0;
+        }
+
+        .portfolio-item-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-item-content .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-item-content .project-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Testimonials/Recommendations Section */
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling if many testimonials */
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 20px;
+            padding-bottom: 20px; /* Space for scrollbar */
+        }
+
+        .testimonial-item {
+            flex: 0 0 100%; /* Each item takes full width of slider for simple case */
+            max-width: 600px; /* Limit width of individual testimonial */
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            scroll-snap-align: start;
+            margin: 0 auto; /* Center individual testimonials */
+        }
+
+        .testimonial-item p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid var(--light);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .testimonial-author-info strong {
+            display: block;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author-info span {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            .card {
+                padding: 30px;
+            }
+            .card h3 {
+                font-size: 1.6rem;
+            }
+            .card h4 {
+                font-size: 1.2rem;
+            }
+            .social-links a {
+                font-size: 1.6rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 0 60px;
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); /* Slightly less sharp cut */
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .testimonial-item {
+                flex: 0 0 90%; /* Adjust for better fit on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tagline {
+                font-size: 0.9rem;
+            }
+            .social-links {
+                gap: 15px;
+            }
+            .social-links a {
+                font-size: 1.4rem;
+            }
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            .card h3 {
+                font-size: 1.4rem;
+            }
+            .card h4 {
+                font-size: 1.1rem;
+            }
+            .skill-tag {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            .project-item {
+                padding-left: 15px;
+                border-left: 3px solid var(--primary);
+            }
+            .project-item h4 i {
+                font-size: 1.4rem;
+                margin-right: 8px;
+            }
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://via.placeholder.com/150/3498db/FFFFFF?text=MK" alt="Mukesh Kumar" class="profile-img">
+            <h1>Mukesh Kumar</h1>
+            <p class="tagline">Data Scientist | Architecting Data-Driven Solutions for Business Growth</p>
+            <div class="social-links">
+                <a href="mailto:mukeshkumar13413@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/mukesh-413/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/mukesh-413-ds" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Resume (Download)"><i class="fas fa-file-pdf"></i></a> 
+            </div>
+            <a href="#contact" class="cta-button">Let's Connect!</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="card">
+                <p>Hello! I'm Mukesh Kumar, a passionate and results-driven **Data Scientist** with over **6 years of experience** in crafting and deploying robust data-driven solutions. My expertise lies in leveraging **predictive modeling, machine learning, and advanced analytics** to solve complex business problems, particularly within the **BFSI sector**. I thrive on transforming raw data into actionable insights that drive efficiency, improve quality, and foster significant business growth. I'm always eager to explore new challenges and contribute to innovative projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills & Expertise</h2>
+            </div>
+            <div class="card">
+                <h3>Technical Proficiencies</h3>
+                <div class="skills-container">
+                    <span class="skill-tag"><i class="fas fa-code"></i> Python</span>
+                    <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+                    <span class="skill-tag"><i class="fas fa-cogs"></i> PySpark</span>
+                    <span class="skill-tag"><i class="fas fa-chart-line"></i> R</span>
+                    <span class="skill-tag"><i class="fas fa-square-root-alt"></i> Matlab</span>
+                    <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+                    <span class="skill-tag"><i class="fas fa-chart-bar"></i> Tableau</span>
+                    <span class="skill-tag"><i class="fas fa-chart-pie"></i> Data Studio</span>
+                    <span class="skill-tag"><i class="fas fa-cloud"></i> AWS (S3, EC2)</span>
+                    <span class="skill-tag"><i class="fas fa-code-branch"></i> Git</span>
+                </div>
+                
+                <h3 style="margin-top: 40px;">Domain & Methodologies</h3>
+                <div class="skills-container">
+                    <span class="skill-tag"><i class="fas fa-money-check-alt"></i> Banking & Financial Services</span>
+                    <span class="skill-tag"><i class="fas fa-bullhorn"></i> Digital Marketing Analytics</span>
+                    <span class="skill-tag"><i class="fas fa-hand-holding-usd"></i> Credit Risk Analytics</span>
+                    <span class="skill-tag"><i class="fas fa-language"></i> Natural Language Processing (NLP)</span>
+                    <span class="skill-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+                    <span class="skill-tag"><i class="fas fa-flask"></i> Data Science Principles</span>
+                    <span class="skill-tag"><i class="fas fa-chart-bar"></i> Statistical Modeling</span>
+                    <span class="skill-tag"><i class="fas fa-robot"></i> Predictive Analytics</span>
+                    <span class="skill-tag"><i class="fas fa-bezier-curve"></i> Data Visualization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            
+            <div class="card">
+                <h3>Analyst - Business Analytics</h3>
+                <h4>Citi Bank, Gurugram</h4>
+                <span class="date">April 2022 - Present</span>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-chart-line"></i> Data-Driven Campaign Optimization</h4>
+                    <p>Enhanced existing frameworks to track and analyze data-driven marketing campaigns, providing monthly performance insights and strategic recommendations to stakeholders. This directly led to improvements in lead generation and deal conversion rates.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-briefcase"></i> Corporate Client Prospecting & Growth</h4>
+                    <p>Developed and refined corporate client prospecting frameworks in collaboration with regional partners and sales teams, identifying high-potential opportunities for corporate Cash and Trade products, significantly contributing to client acquisition.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-globe"></i> Global Client Network Visualization</h4>
+                    <p>Designed and deployed an interactive Tableau dashboard visualizing client relationships and market presence globally. This tool empowers sales teams with data-driven insights for new client acquisition and strategic planning.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-exchange-alt"></i> Global Supply Chain Shift Analysis</h4>
+                    <p>Created an analytical framework to deep-dive into global supplier payment trends and cross-border trade flows. Identified key corridors and regions experiencing significant year-over-year trade shifts, providing crucial market intelligence.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Data Scientist</h3>
+                <h4>Zenon Analytics, Gurugram</h4>
+                <span class="date">February 2020 - April 2022</span>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-mail-bulk"></i> Customer Acquisition Model for Direct Mail</h4>
+                    <p>Engineered an **XGBoost-based model** to optimize customer acquisition strategies for a U.S. credit card company, achieving a robust **76% Gini coefficient** and significantly improving campaign effectiveness.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-credit-card"></i> Credit Line Optimization Strategy</h4>
+                    <p>Analyzed the existing credit line assignment strategy for a major cards client. By applying a look-alike technique, identified credit line-sensitive customer segments and re-assigned lines, resulting in an **additional $6 million in revenue**.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-robot"></i> Automated Credit Risk Model Monitoring</h4>
+                    <p>Collaborated with credit risk model owners to define key performance indicators (KPIs) and developed a **Python automation tool** for scheduled monthly performance reporting, streamlining the monitoring process and ensuring model health.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Associate Data Scientist</h3>
+                <h4>Cognizant Technology Solution, Bangalore</h4>
+                <span class="date">September 2018 - February 2020</span>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-file-contract"></i> AI-Powered Contract Reviewer Tool</h4>
+                    <p>Developed a **multi-class text classifier model** using Python's regular expressions for text mining and NLTK, automating the contract review process and reducing review time from 5-6 hours to just 10 minutes.</p>
+                </div>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-chart-bar"></i> Univariate Time Series Forecasting</h4>
+                    <p>Built an **ARIMA Model** for accurate forecasting of monthly revenues using historical time-series data, providing critical insights for business planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio & Projects</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x200/db3434/FFFFFF?text=Project+1" alt="Project 1 Image">
+                    <div class="portfolio-item-content">
+                        <h3>Customer Churn Prediction</h3>
+                        <p>Developed a machine learning model to predict customer churn for a telecom company, leading to targeted retention strategies and a significant reduction in churn rate.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x200/34db6d/FFFFFF?text=Project+2" alt="Project 2 Image">
+                    <div class="portfolio-item-content">
+                        <h3>Sentiment Analysis of Product Reviews</h3>
+                        <p>Implemented an NLP pipeline to analyze customer reviews and extract sentiment, providing valuable insights into product strengths and weaknesses for a retail client.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/400x200/dbb834/FFFFFF?text=Project+3" alt="Project 3 Image">
+                    <div class="portfolio-item-content">
+                        <h3>Sales Forecasting Dashboard</h3>
+                        <p>Built an interactive dashboard using Tableau to visualize and forecast sales performance across different regions and product categories, aiding in strategic decision-making.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Dashboard</a>
+                            <a href="#" target="_blank"><i class="fas fa-file-alt"></i> Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonials & Recommendations</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-item">
+                    <p>"Mukesh is an incredibly insightful data scientist. His ability to distill complex data into clear, actionable strategies is truly impressive. He was instrumental in optimizing our customer acquisition channels."</p>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60/ccc?text=JD" alt="John Doe">
+                        <div class="testimonial-author-info">
+                            <strong>John Doe</strong>
+                            <span>Head of Analytics, Former Colleague</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <p>"Working with Mukesh on the credit line optimization project was a game-changer. His analytical rigor and problem-solving skills directly contributed to a significant revenue increase for our client."</p>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60/999?text=AJ" alt="Anjali Jain">
+                        <div class="testimonial-author-info">
+                            <strong>Anjali Jain</strong>
+                            <span>Project Manager, Zenon Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="card">
+                <h3>BS-MS Dual Degree (Economics)</h3>
+                <h4>Indian Institute of Technology (IIT) Kanpur</h4>
+                <span class="date">2013 - 2018</span>
+                <p>Major: Economics</p>
+                <p>Minor: Industrial Management Engineering (2017-2018)</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>mukeshkumar13413@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 72 75 56 6097</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ardee City, Gurugram, India</span>
+                </div>
+            </div>
+            <div class="social-links" style="margin-top: 30px;">
+                <a href="mailto:mukeshkumar13413@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/mukesh-413/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/mukesh-413-ds" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.9rem; color: var(--gray);">&copy; 2025 Mukesh Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
